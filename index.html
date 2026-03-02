@@ -39,8 +39,14 @@ nav{
   font-family:'Barlow Condensed',sans-serif;
   font-size:1.6rem;font-weight:900;letter-spacing:.04em;
   color:var(--white);text-decoration:none;
+  display:flex;flex-direction:column;line-height:1.1;
 }
 .logo span{color:var(--teal-light);}
+.logo-tagline{
+  font-size:.65rem;font-weight:500;letter-spacing:.12em;
+  text-transform:uppercase;color:rgba(255,255,255,0.55);
+  margin-top:.15rem;
+}
 .nav-links{display:flex;gap:2rem;list-style:none;}
 .nav-links a{
   color:rgba(255,255,255,0.82);font-size:.9rem;font-weight:500;
@@ -379,7 +385,10 @@ footer .footer-links a:hover{color:var(--teal-light);}
 
 <!-- NAV -->
 <nav id="mainNav">
-  <a class="logo" onclick="showPage('home')">Xeni<span>Mobile</span> Labs</a>
+  <a class="logo" onclick="showPage('home')">
+    <div>Xeni<span>Mobile</span> Labs</div>
+    <div class="logo-tagline">Sample Collection Experts</div>
+  </a>
   <ul class="nav-links">
     <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
     <li><a onclick="showPage('services')" id="nav-services">Services</a></li>
