@@ -343,6 +343,17 @@ section{padding:6rem 4%;}
 .nl-bullets{list-style:none;display:flex;flex-direction:column;gap:.62rem;}
 .nl-bullets li{font-size:.88rem;color:var(--muted);display:flex;gap:.5rem;line-height:1.58;}
 .nl-bullets li::before{content:'•';color:var(--teal);font-weight:700;}
+.mini-photo-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1rem;margin-top:1.15rem;}
+.mini-photo-card{
+  border-radius:14px;overflow:hidden;background:var(--white);
+  border:1px solid #e8ecf5;box-shadow:0 4px 18px rgba(14,30,80,.07);
+}
+.mini-photo-card img{
+  width:100%;height:170px;object-fit:cover;display:block;
+}
+.mini-photo-cap{
+  padding:.6rem .75rem;font-size:.77rem;color:var(--muted);line-height:1.5;
+}
 
 /* ═══════════════════════════════════════
    INVESTORS — HERO
@@ -635,6 +646,7 @@ footer a{color:inherit;text-decoration:none;}
   .about-grid{grid-template-columns:1fr;}
   .contact-grid{grid-template-columns:1fr;}
   .nl-grid{grid-template-columns:1fr;}
+  .mini-photo-grid{grid-template-columns:1fr;}
   .biz-grid{grid-template-columns:1fr;}
   .funds-grid{grid-template-columns:1fr;}
   .solution-grid{grid-template-columns:1fr;}
@@ -871,6 +883,10 @@ footer a{color:inherit;text-decoration:none;}
         <div class="about-story">
           <p>XeniX Mobile Labs was founded by <strong>Sonsie Brown</strong>, a certified phlebotomist with multi-state and international clinical experience, during the height of the COVID-19 pandemic — when access to healthcare became a matter of life and death.</p>
           <p>Witnessing firsthand how transportation barriers, fear of infection, and collapsing rural healthcare infrastructure kept people from critical diagnostics, Sonsie built XeniX to be the solution: a fully mobile, fully compliant, community-first diagnostic service that meets patients exactly where they are.</p>
+          <div class="mini-photo-card" style="max-width:300px;">
+            <img src="assets/highlights/founder-laptop.png" alt="Sonsie Brown in clinical attire holding laptop">
+            <div class="mini-photo-cap">Founder spotlight — leadership in care, innovation, and patient access.</div>
+          </div>
           <p>From individual patients in their homes to corporate wellness programs, nursing homes, and international COVID-19 response efforts, XeniX has consistently delivered accurate, compassionate, professional care — with revenue from day one and a compliance infrastructure that rivals established labs.</p>
           <p>Today, XeniX operates across multiple states and continues to grow, driven by a simple belief: <strong>quality healthcare should come to you.</strong></p>
           <div class="values-grid">
@@ -1010,6 +1026,7 @@ footer a{color:inherit;text-decoration:none;}
           <div class="nl-quote">"It was fortunate to have you on board with us... and we are thankful for the assistance you provided." — Kristen Manion-Taylor, SVP In-Flight Service, Delta Air Lines</div>
         </div>
         <div class="nl-card">
+          <img src="assets/highlights/clinical-team.png" alt="XeniX clinical team in protective gear" style="width:100%;height:180px;object-fit:cover;border-radius:10px;margin-bottom:.8rem;">
           <h3>Global Expansion Initiative</h3>
           <ul class="nl-bullets">
             <li>Africa outreach partnerships for mobile diagnostics and phlebotomy training.</li>
@@ -1055,6 +1072,16 @@ footer a{color:inherit;text-decoration:none;}
           <li>Continuing education programs for staff.</li>
           <li>Partnerships building the next generation of mobile healthcare professionals.</li>
         </ul>
+        <div class="mini-photo-grid">
+          <div class="mini-photo-card">
+            <img src="assets/highlights/community-event.png" alt="Community event group photo">
+            <div class="mini-photo-cap">Community relationships are at the center of our mission.</div>
+          </div>
+          <div class="mini-photo-card">
+            <img src="assets/highlights/media-appearance.png" alt="Media appearance with healthcare leaders">
+            <div class="mini-photo-cap">Public education and media outreach to increase healthcare access awareness.</div>
+          </div>
+        </div>
       </div>
       <div class="nl-card" style="margin-top:1.4rem;background:linear-gradient(135deg,var(--navy),var(--navy2));border-color:rgba(61,213,194,.2);">
         <h3 style="color:var(--white);">Digital News</h3>
