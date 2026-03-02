@@ -242,12 +242,11 @@ section{padding:6rem 4%;}
 }
 .founder-avatar{
   width:90px;height:90px;border-radius:50%;
-  background:linear-gradient(135deg,var(--teal),var(--teal-light));
-  display:flex;align-items:center;justify-content:center;
-  font-family:'Barlow Condensed',sans-serif;
-  font-size:2.2rem;font-weight:900;color:var(--white);
+  border:2px solid rgba(61,213,194,.5);
+  overflow:hidden;background:rgba(255,255,255,.1);
   margin-bottom:1.25rem;position:relative;z-index:1;
 }
+.founder-avatar img{width:100%;height:100%;object-fit:cover;display:block;}
 .founder-name{font-family:'Barlow Condensed',sans-serif;font-size:1.9rem;font-weight:900;margin-bottom:.2rem;position:relative;z-index:1;}
 .founder-role{font-size:.88rem;color:var(--teal-light);font-weight:600;margin-bottom:1.4rem;position:relative;z-index:1;}
 .cred-list{display:flex;flex-direction:column;gap:.55rem;position:relative;z-index:1;}
@@ -265,6 +264,15 @@ section{padding:6rem 4%;}
 .value-card{background:var(--light);border-radius:11px;padding:1.2rem;border-left:3px solid var(--teal);}
 .value-title{font-weight:700;color:var(--navy);margin-bottom:.25rem;font-size:.88rem;}
 .value-desc{font-size:.8rem;color:var(--muted);line-height:1.55;}
+.personal-gallery{
+  margin-top:1.3rem;
+  display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem;
+}
+.personal-photo{
+  border-radius:11px;overflow:hidden;
+  border:1px solid #e3e8f3;background:var(--white);
+}
+.personal-photo img{width:100%;height:140px;object-fit:cover;display:block;}
 
 /* ═══════════════════════════════════════
    CONTACT
@@ -625,6 +633,7 @@ footer a{color:inherit;text-decoration:none;}
   .wins-grid{grid-template-columns:1fr;}
   .frow{grid-template-columns:1fr;}
   .values-grid{grid-template-columns:1fr;}
+  .personal-gallery{grid-template-columns:1fr;}
   .stats-strip-inner{grid-template-columns:1fr 1fr;}
   .badges-row{grid-template-columns:1fr;}
   .big-stat-pair{grid-template-columns:1fr;}
@@ -812,7 +821,9 @@ footer a{color:inherit;text-decoration:none;}
       <p class="section-sub">Born from a healthcare crisis, built on a mission — bringing diagnostics to the people who need them most.</p>
       <div class="about-grid">
         <div class="founder-card">
-          <div class="founder-avatar">SB</div>
+          <div class="founder-avatar">
+            <img src="assets/personal/founder-portrait.jpg" alt="Founder portrait from XeniX pitch deck">
+          </div>
           <div class="founder-name">Sonsie Brown</div>
           <div class="founder-role">Founder &amp; CEO</div>
           <div class="cred-list">
@@ -834,6 +845,17 @@ footer a{color:inherit;text-decoration:none;}
           <p>Witnessing firsthand how transportation barriers, fear of infection, and collapsing rural healthcare infrastructure kept people from critical diagnostics, Sonsie built XeniX to be the solution: a fully mobile, fully compliant, community-first diagnostic service that meets patients exactly where they are.</p>
           <p>From individual patients in their homes to corporate wellness programs, nursing homes, and international COVID-19 response efforts, XeniX has consistently delivered accurate, compassionate, professional care — with revenue from day one and a compliance infrastructure that rivals established labs.</p>
           <p>Today, XeniX operates across multiple states and continues to grow, driven by a simple belief: <strong>quality healthcare should come to you.</strong></p>
+          <div class="personal-gallery">
+            <div class="personal-photo">
+              <img src="assets/personal/founder-portrait.jpg" alt="Sonsie Brown portrait from pitch deck">
+            </div>
+            <div class="personal-photo">
+              <img src="assets/personal/founder-closeup.jpg" alt="Sonsie Brown close-up from pitch deck">
+            </div>
+            <div class="personal-photo">
+              <img src="assets/personal/mobile-care-team.jpg" alt="Mobile care team photo from pitch deck">
+            </div>
+          </div>
           <div class="values-grid">
             <div class="value-card">
               <div class="value-title">⚡ Speed</div>
