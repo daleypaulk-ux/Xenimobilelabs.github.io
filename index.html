@@ -1,0 +1,741 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>XeniMobile Labs</title>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;600;700;800;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --navy: #0e1e50;
+  --navy2: #1b2f6e;
+  --purple: #6b3fa0;
+  --teal: #2db5a3;
+  --teal-light: #3dd5c2;
+  --gold: #e8a020;
+  --light: #f0f4f8;
+  --white: #fff;
+  --text: #1a2240;
+  --muted: #6b7494;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:'DM Sans',sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+
+/* ── PAGE SYSTEM ── */
+.page{display:none;}
+.page.active{display:block;}
+
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  display:flex;align-items:center;justify-content:space-between;
+  padding:1rem 4%;
+  background:rgba(14,30,80,0.97);
+  backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(61,213,194,0.15);
+}
+.logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.6rem;font-weight:900;letter-spacing:.04em;
+  color:var(--white);text-decoration:none;
+}
+.logo span{color:var(--teal-light);}
+.nav-links{display:flex;gap:2rem;list-style:none;}
+.nav-links a{
+  color:rgba(255,255,255,0.82);font-size:.9rem;font-weight:500;
+  text-decoration:none;letter-spacing:.04em;transition:color .2s;
+  cursor:pointer;
+}
+.nav-links a:hover,.nav-links a.active{color:var(--teal-light);}
+.nav-cta{
+  background:var(--teal);color:var(--white);
+  padding:.55rem 1.4rem;border-radius:6px;
+  font-size:.875rem;font-weight:600;text-decoration:none;
+  transition:background .2s;cursor:pointer;border:none;
+}
+.nav-cta:hover{background:var(--teal-light);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;border:none;background:none;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--white);border-radius:2px;transition:.3s;}
+
+/* ── HERO ── */
+.hero{
+  min-height:100vh;
+  background:linear-gradient(135deg,var(--navy) 0%,var(--navy2) 55%,#1a3a5c 100%);
+  display:flex;align-items:center;padding:8rem 4% 5rem;
+  position:relative;overflow:hidden;
+}
+.hero::before{
+  content:'';position:absolute;inset:0;
+  background:radial-gradient(ellipse 70% 60% at 80% 40%,rgba(45,181,163,0.13) 0%,transparent 70%);
+  pointer-events:none;
+}
+.hero-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  align-items:center;gap:4rem;max-width:1200px;margin:0 auto;width:100%;
+}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:.5rem;
+  background:rgba(45,181,163,0.15);border:1px solid rgba(45,181,163,0.3);
+  color:var(--teal-light);font-size:.8rem;font-weight:600;
+  letter-spacing:.1em;text-transform:uppercase;
+  padding:.4rem 1rem;border-radius:100px;margin-bottom:1.5rem;
+}
+.hero-badge::before{content:'●';font-size:.5rem;animation:pulse 2s infinite;}
+@keyframes pulse{0%,100%{opacity:1;}50%{opacity:.3;}}
+.hero h1{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(3rem,6vw,5.5rem);font-weight:900;
+  line-height:1.0;color:var(--white);
+  margin-bottom:1.5rem;letter-spacing:-.01em;
+}
+.hero h1 .accent{color:var(--teal-light);}
+.hero p{
+  font-size:1.1rem;line-height:1.75;
+  color:rgba(255,255,255,0.7);max-width:480px;margin-bottom:2.5rem;
+}
+.hero-btns{display:flex;gap:1rem;flex-wrap:wrap;}
+.btn-primary{
+  background:var(--teal);color:var(--white);
+  padding:.9rem 2rem;border-radius:8px;font-size:1rem;
+  font-weight:600;text-decoration:none;transition:all .2s;
+  border:none;cursor:pointer;
+}
+.btn-primary:hover{background:var(--teal-light);transform:translateY(-2px);}
+.btn-secondary{
+  background:transparent;color:var(--white);
+  padding:.9rem 2rem;border-radius:8px;font-size:1rem;
+  font-weight:600;text-decoration:none;transition:all .2s;
+  border:2px solid rgba(255,255,255,0.3);cursor:pointer;
+}
+.btn-secondary:hover{border-color:var(--teal-light);color:var(--teal-light);}
+
+.hero-visual{display:flex;justify-content:center;align-items:center;}
+.hero-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(61,213,194,0.2);
+  border-radius:20px;padding:2.5rem;
+  backdrop-filter:blur(10px);max-width:340px;width:100%;
+}
+.hero-stat-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;}
+.hero-stat{
+  background:rgba(45,181,163,0.1);border:1px solid rgba(45,181,163,0.2);
+  border-radius:12px;padding:1.2rem;text-align:center;
+}
+.hero-stat .num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:2rem;font-weight:900;color:var(--teal-light);
+}
+.hero-stat .label{font-size:.75rem;color:rgba(255,255,255,0.55);margin-top:.25rem;}
+.hero-divider{height:1px;background:rgba(255,255,255,0.1);margin:1.2rem 0;}
+.hero-features{display:flex;flex-direction:column;gap:.8rem;}
+.hero-feature{
+  display:flex;align-items:center;gap:.75rem;
+  color:rgba(255,255,255,0.75);font-size:.9rem;
+}
+.hero-feature::before{
+  content:'✓';background:var(--teal);color:var(--white);
+  width:20px;height:20px;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  font-size:.7rem;font-weight:700;flex-shrink:0;
+}
+
+/* ── SECTION BASE ── */
+section{padding:6rem 4%;}
+.section-inner{max-width:1200px;margin:0 auto;}
+.section-label{
+  font-size:.75rem;font-weight:700;letter-spacing:.15em;
+  text-transform:uppercase;color:var(--teal);margin-bottom:.75rem;
+}
+.section-title{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(2rem,4vw,3.2rem);font-weight:900;
+  color:var(--navy);line-height:1.1;margin-bottom:1.25rem;
+}
+.section-sub{font-size:1.05rem;color:var(--muted);max-width:580px;line-height:1.7;}
+
+/* ── MISSION ── */
+.mission{background:var(--light);}
+.mission-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;margin-top:4rem;
+}
+.mission-text p{
+  font-size:1.05rem;line-height:1.8;color:var(--muted);margin-bottom:1rem;
+}
+.mission-pillars{display:flex;flex-direction:column;gap:1rem;}
+.pillar{
+  display:flex;align-items:flex-start;gap:1rem;
+  background:var(--white);border-radius:12px;
+  padding:1.5rem;border-left:4px solid var(--teal);
+  box-shadow:0 2px 12px rgba(0,0,0,0.04);
+}
+.pillar-icon{font-size:1.6rem;line-height:1;}
+.pillar-title{font-weight:700;color:var(--navy);margin-bottom:.3rem;}
+.pillar-desc{font-size:.9rem;color:var(--muted);line-height:1.6;}
+
+/* ── SERVICES ── */
+.services-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:1.5rem;margin-top:3.5rem;
+}
+.service-card{
+  background:var(--white);border-radius:16px;
+  padding:2rem;border:1px solid #e8ecf5;
+  transition:all .25s;position:relative;overflow:hidden;
+}
+.service-card::before{
+  content:'';position:absolute;top:0;left:0;right:0;height:3px;
+  background:linear-gradient(90deg,var(--teal),var(--teal-light));
+  transform:scaleX(0);transform-origin:left;transition:.3s;
+}
+.service-card:hover{transform:translateY(-4px);box-shadow:0 12px 40px rgba(14,30,80,0.1);}
+.service-card:hover::before{transform:scaleX(1);}
+.service-icon{font-size:2.2rem;margin-bottom:1rem;}
+.service-name{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.35rem;font-weight:800;color:var(--navy);margin-bottom:.75rem;
+}
+.service-list{list-style:none;display:flex;flex-direction:column;gap:.5rem;}
+.service-list li{
+  font-size:.875rem;color:var(--muted);
+  display:flex;align-items:center;gap:.5rem;
+}
+.service-list li::before{content:'→';color:var(--teal);font-weight:700;}
+
+/* ── WHY US ── */
+.why{background:linear-gradient(135deg,var(--navy),var(--navy2));}
+.why .section-title{color:var(--white);}
+.why .section-sub{color:rgba(255,255,255,0.6);}
+.why-grid{
+  display:grid;grid-template-columns:repeat(4,1fr);
+  gap:1.5rem;margin-top:3.5rem;
+}
+.why-card{
+  background:rgba(255,255,255,0.05);
+  border:1px solid rgba(255,255,255,0.1);
+  border-radius:16px;padding:2rem;text-align:center;
+  transition:all .25s;
+}
+.why-card:hover{background:rgba(45,181,163,0.1);border-color:rgba(45,181,163,0.3);}
+.why-num{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:3rem;font-weight:900;color:var(--teal-light);margin-bottom:.5rem;
+}
+.why-label{font-size:.95rem;font-weight:600;color:var(--white);margin-bottom:.5rem;}
+.why-desc{font-size:.85rem;color:rgba(255,255,255,0.5);line-height:1.6;}
+
+/* ── ABOUT ── */
+.about-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:5rem;align-items:center;margin-top:4rem;
+}
+.about-card{
+  background:linear-gradient(135deg,var(--navy),var(--navy2));
+  border-radius:20px;padding:3rem;color:var(--white);
+  position:relative;overflow:hidden;
+}
+.about-card::before{
+  content:'';position:absolute;
+  top:-60px;right:-60px;width:200px;height:200px;
+  background:radial-gradient(circle,rgba(45,181,163,0.2),transparent 70%);
+}
+.about-card h3{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:2rem;font-weight:900;margin-bottom:1.5rem;
+}
+.about-values{display:flex;flex-direction:column;gap:1rem;}
+.about-value{
+  display:flex;align-items:center;gap:1rem;
+  background:rgba(255,255,255,0.07);border-radius:10px;padding:1rem 1.25rem;
+}
+.about-value span:first-child{font-size:1.3rem;}
+.about-value p{font-size:.9rem;color:rgba(255,255,255,0.8);}
+.about-value p strong{color:var(--white);}
+.about-text p{font-size:1.05rem;line-height:1.8;color:var(--muted);margin-bottom:1.25rem;}
+.about-text .highlight{
+  background:var(--light);border-radius:12px;padding:1.5rem;
+  border-left:4px solid var(--teal);margin-top:1.5rem;
+}
+.about-text .highlight p{color:var(--navy);font-weight:500;margin:0;}
+
+/* ── CONTACT ── */
+.contact{background:var(--light);}
+.contact-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:4rem;align-items:start;margin-top:4rem;
+}
+.contact-info{display:flex;flex-direction:column;gap:1.5rem;}
+.contact-item{
+  display:flex;gap:1.25rem;align-items:flex-start;
+  background:var(--white);border-radius:14px;
+  padding:1.5rem;box-shadow:0 2px 12px rgba(0,0,0,0.04);
+}
+.contact-item-icon{
+  width:48px;height:48px;border-radius:12px;
+  background:var(--navy);display:flex;align-items:center;
+  justify-content:center;font-size:1.3rem;flex-shrink:0;
+}
+.contact-item-title{font-weight:700;color:var(--navy);margin-bottom:.3rem;}
+.contact-item-value{color:var(--muted);font-size:.95rem;}
+.contact-form{
+  background:var(--white);border-radius:20px;
+  padding:2.5rem;box-shadow:0 4px 24px rgba(0,0,0,0.06);
+}
+.contact-form h3{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.6rem;font-weight:800;color:var(--navy);margin-bottom:1.5rem;
+}
+.form-group{margin-bottom:1.25rem;}
+.form-group label{
+  display:block;font-size:.85rem;font-weight:600;
+  color:var(--navy);margin-bottom:.4rem;
+}
+.form-group input,
+.form-group select,
+.form-group textarea{
+  width:100%;padding:.85rem 1rem;border:1.5px solid #dde3f0;
+  border-radius:8px;font-family:'DM Sans',sans-serif;
+  font-size:.95rem;color:var(--text);background:var(--white);
+  transition:border-color .2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus{
+  outline:none;border-color:var(--teal);
+}
+.form-group textarea{resize:vertical;min-height:110px;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+.form-submit{
+  width:100%;padding:1rem;background:var(--teal);
+  color:var(--white);border:none;border-radius:8px;
+  font-size:1rem;font-weight:700;cursor:pointer;
+  transition:background .2s;margin-top:.5rem;
+}
+.form-submit:hover{background:var(--navy);}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--navy);color:rgba(255,255,255,0.5);
+  padding:3rem 4%;text-align:center;
+}
+footer .footer-logo{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:1.6rem;font-weight:900;color:var(--white);
+  margin-bottom:.75rem;
+}
+footer .footer-logo span{color:var(--teal-light);}
+footer p{font-size:.875rem;line-height:1.8;}
+footer .footer-links{
+  display:flex;justify-content:center;gap:2rem;
+  margin:1rem 0;list-style:none;flex-wrap:wrap;
+}
+footer .footer-links a{
+  color:rgba(255,255,255,0.5);text-decoration:none;
+  font-size:.875rem;transition:color .2s;cursor:pointer;
+}
+footer .footer-links a:hover{color:var(--teal-light);}
+.footer-divider{
+  height:1px;background:rgba(255,255,255,0.1);
+  margin:1.5rem 0;
+}
+
+/* ── TOAST ── */
+.toast{
+  position:fixed;bottom:2rem;right:2rem;z-index:999;
+  background:var(--teal);color:var(--white);
+  padding:1rem 1.5rem;border-radius:12px;
+  font-weight:600;font-size:.95rem;
+  box-shadow:0 8px 32px rgba(0,0,0,0.2);
+  transform:translateY(100px);opacity:0;
+  transition:all .4s cubic-bezier(.34,1.56,.64,1);
+  pointer-events:none;
+}
+.toast.show{transform:translateY(0);opacity:1;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:900px){
+  .hero-grid,.mission-grid,.about-grid,.contact-grid{grid-template-columns:1fr;}
+  .hero-visual{display:none;}
+  .services-grid{grid-template-columns:1fr 1fr;}
+  .why-grid{grid-template-columns:1fr 1fr;}
+}
+@media(max-width:600px){
+  .nav-links,.nav-cta{display:none;}
+  .hamburger{display:flex;}
+  nav.open .nav-links{
+    display:flex;flex-direction:column;
+    position:fixed;top:70px;left:0;right:0;
+    background:var(--navy);padding:1.5rem 4%;
+    gap:1.25rem;border-bottom:1px solid rgba(255,255,255,0.1);
+  }
+  nav.open .nav-cta{display:block;margin-top:.5rem;}
+  .services-grid,.why-grid{grid-template-columns:1fr;}
+  .form-row{grid-template-columns:1fr;}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a class="logo" onclick="showPage('home')">Xeni<span>Mobile</span> Labs</a>
+  <ul class="nav-links">
+    <li><a onclick="showPage('home')" class="active" id="nav-home">Home</a></li>
+    <li><a onclick="showPage('services')" id="nav-services">Services</a></li>
+    <li><a onclick="showPage('about')" id="nav-about">About</a></li>
+    <li><a onclick="showPage('contact')" id="nav-contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" onclick="showPage('contact')">Book Now</button>
+  <button class="hamburger" onclick="toggleMenu()" id="hamburger">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- ══════════ HOME PAGE ══════════ -->
+<div class="page active" id="page-home">
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-badge">📍 Kansas City Metro Area</div>
+        <h1>Healthcare <span class="accent">Delivered</span> to You</h1>
+        <p>XeniMobile Labs brings professional diagnostic and clinical services directly to your home, workplace, or community. Accurate results. Compassionate care. No waiting rooms.</p>
+        <div class="hero-btns">
+          <button class="btn-primary" onclick="showPage('contact')">Schedule a Visit</button>
+          <button class="btn-secondary" onclick="showPage('services')">Our Services</button>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <div class="hero-stat-row">
+            <div class="hero-stat">
+              <div class="num">24h</div>
+              <div class="label">Fast Results</div>
+            </div>
+            <div class="hero-stat">
+              <div class="num">100%</div>
+              <div class="label">Mobile Service</div>
+            </div>
+          </div>
+          <div class="hero-divider"></div>
+          <div class="hero-features">
+            <div class="hero-feature">Certified Phlebotomists</div>
+            <div class="hero-feature">Insurance Friendly</div>
+            <div class="hero-feature">Same-Day Appointments</div>
+            <div class="hero-feature">HIPAA Compliant</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission">
+    <div class="section-inner">
+      <div class="section-label">Our Mission</div>
+      <h2 class="section-title">Removing Barriers to Quality Care</h2>
+      <p class="section-sub">At XeniMobile Labs, we believe healthcare should come to you — not the other way around.</p>
+      <div class="mission-grid">
+        <div class="mission-text">
+          <p>We are committed to delivering accurate, reliable lab testing directly to your home or workplace — eliminating barriers, reducing stress, and bringing healthcare closer to where life happens.</p>
+          <p>Whether you're a busy professional, a senior who needs support, or a business looking after your team, we tailor our services to fit your life — not the other way around.</p>
+        </div>
+        <div class="mission-pillars">
+          <div class="pillar">
+            <div class="pillar-icon">⚡</div>
+            <div>
+              <div class="pillar-title">Speed</div>
+              <div class="pillar-desc">Same-day appointments and rapid result turnaround so you never have to wait.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🎯</div>
+            <div>
+              <div class="pillar-title">Accuracy</div>
+              <div class="pillar-desc">CLIA-compliant testing performed by certified professionals you can trust.</div>
+            </div>
+          </div>
+          <div class="pillar">
+            <div class="pillar-icon">🛡️</div>
+            <div>
+              <div class="pillar-title">Safety</div>
+              <div class="pillar-desc">Full HIPAA compliance and strict safety protocols in every visit.</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section class="why">
+    <div class="section-inner">
+      <div class="section-label" style="color:var(--teal-light)">Why XeniMobile</div>
+      <h2 class="section-title">Built Around Your Convenience</h2>
+      <p class="section-sub">We do the traveling so you can focus on your health.</p>
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="why-num">1hr</div>
+          <div class="why-label">Response Time</div>
+          <div class="why-desc">We move fast — often booking same-day visits.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">0</div>
+          <div class="why-label">Waiting Rooms</div>
+          <div class="why-desc">Skip the clinic. We come to you.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">24/7</div>
+          <div class="why-label">Availability</div>
+          <div class="why-desc">We work around your schedule, not the other way around.</div>
+        </div>
+        <div class="why-card">
+          <div class="why-num">100%</div>
+          <div class="why-label">Confidential</div>
+          <div class="why-desc">All services performed with full HIPAA compliance.</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div><!-- end home page -->
+
+<!-- ══════════ SERVICES PAGE ══════════ -->
+<div class="page" id="page-services">
+  <div style="height:80px;background:var(--navy);"></div>
+  <section>
+    <div class="section-inner">
+      <div class="section-label">What We Offer</div>
+      <h2 class="section-title">Our Services</h2>
+      <p class="section-sub">Comprehensive mobile health services delivered with precision and care.</p>
+      <div class="services-grid">
+
+        <div class="service-card">
+          <div class="service-icon">🔬</div>
+          <div class="service-name">Diagnostic & Lab Testing</div>
+          <ul class="service-list">
+            <li>Routine Blood Work (CBC, CMP, Lipid Panels)</li>
+            <li>Diabetes Testing (A1C, Glucose Monitoring)</li>
+            <li>Thyroid Panels</li>
+            <li>Hormone Testing</li>
+            <li>Vitamin & Nutrient Testing</li>
+            <li>STD/STI Testing</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🏢</div>
+          <div class="service-name">Corporate & Community</div>
+          <ul class="service-list">
+            <li>Workplace Drug Testing</li>
+            <li>On-Site Employee Wellness Programs</li>
+            <li>Pre-Employment Physical Testing</li>
+            <li>DOT Testing</li>
+            <li>Health Fair Participation</li>
+            <li>Assisted Living & Nursing Home Services</li>
+          </ul>
+        </div>
+
+        <div class="service-card">
+          <div class="service-icon">🏠</div>
+          <div class="service-name">In-Home Clinical Services</div>
+          <ul class="service-list">
+            <li>Phlebotomy Services</li>
+            <li>Specimen Collection for Physician Orders</li>
+            <li>IV Hydration Therapy</li>
+            <li>Vitamin Injections (B12, etc.)</li>
+            <li>Vaccinations</li>
+            <li>Mobile EKG Testing</li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div style="margin-top:3rem;text-align:center;">
+        <p style="color:var(--muted);margin-bottom:1.5rem;font-size:1.05rem;font-style:italic;">
+          Call or text <strong style="color:var(--navy);">913-762-2512</strong> to schedule an appointment!
+        </p>
+        <button class="btn-primary" onclick="showPage('contact')">Book Your Visit</button>
+      </div>
+    </div>
+  </section>
+</div><!-- end services page -->
+
+<!-- ══════════ ABOUT PAGE ══════════ -->
+<div class="page" id="page-about">
+  <div style="height:80px;background:var(--navy);"></div>
+  <section>
+    <div class="section-inner">
+      <div class="section-label">Our Story</div>
+      <h2 class="section-title">About XeniMobile Labs</h2>
+      <p class="section-sub">We started XeniMobile Labs because we believe healthcare should meet people where they are — not the other way around.</p>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Our Core Values</h3>
+          <div class="about-values">
+            <div class="about-value">
+              <span>⚡</span>
+              <p><strong>Speed</strong> — Same-day appointments and fast results you can count on.</p>
+            </div>
+            <div class="about-value">
+              <span>🎯</span>
+              <p><strong>Accuracy</strong> — CLIA-compliant, certified professionals every time.</p>
+            </div>
+            <div class="about-value">
+              <span>🛡️</span>
+              <p><strong>Safety</strong> — Full HIPAA compliance and strict safety protocols.</p>
+            </div>
+            <div class="about-value">
+              <span>❤️</span>
+              <p><strong>Compassion</strong> — We treat every patient with dignity and care.</p>
+            </div>
+          </div>
+        </div>
+        <div class="about-text">
+          <p>At XeniMobile Labs, our mission is to make high-quality diagnostic care accessible, compassionate, and convenient for every individual we serve.</p>
+          <p>We are committed to delivering accurate, reliable lab testing directly to your home or workplace — eliminating barriers, reducing stress, and bringing healthcare closer to where life happens.</p>
+          <p>Whether you're a busy professional, a senior who needs support, or a company looking to serve your team, we're here to help.</p>
+          <div class="highlight">
+            <p>📞 Call or text us at <strong>913-762-2512</strong> — we're ready to schedule your visit today.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end about page -->
+
+<!-- ══════════ CONTACT PAGE ══════════ -->
+<div class="page" id="page-contact">
+  <div style="height:80px;background:var(--navy);"></div>
+  <section class="contact">
+    <div class="section-inner">
+      <div class="section-label">Get In Touch</div>
+      <h2 class="section-title">Schedule a Visit</h2>
+      <p class="section-sub">Ready to bring healthcare to your door? Reach out today.</p>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <div class="contact-item">
+            <div class="contact-item-icon">📞</div>
+            <div>
+              <div class="contact-item-title">Phone / Text</div>
+              <div class="contact-item-value">913-762-2512</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">📍</div>
+            <div>
+              <div class="contact-item-title">Service Area</div>
+              <div class="contact-item-value">Kansas City Metro Area</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">🕐</div>
+            <div>
+              <div class="contact-item-title">Hours</div>
+              <div class="contact-item-value">Available 7 days a week — call to confirm availability</div>
+            </div>
+          </div>
+          <div class="contact-item">
+            <div class="contact-item-icon">💼</div>
+            <div>
+              <div class="contact-item-title">Corporate Inquiries</div>
+              <div class="contact-item-value">Ask about bulk pricing for businesses and organizations</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <h3>Request an Appointment</h3>
+          <div class="form-row">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Jane">
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Smith">
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Phone Number</label>
+            <input type="tel" placeholder="(913) 000-0000">
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="you@email.com">
+          </div>
+          <div class="form-group">
+            <label>Service Needed</label>
+            <select>
+              <option value="">Select a service...</option>
+              <option>Routine Blood Work</option>
+              <option>Diabetes Testing</option>
+              <option>Thyroid Panel</option>
+              <option>Hormone Testing</option>
+              <option>Vitamin & Nutrient Testing</option>
+              <option>STD/STI Testing</option>
+              <option>Workplace Drug Testing</option>
+              <option>DOT Testing</option>
+              <option>IV Hydration Therapy</option>
+              <option>Phlebotomy Services</option>
+              <option>Mobile EKG</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message (Optional)</label>
+            <textarea placeholder="Any additional details, address, or special requests..."></textarea>
+          </div>
+          <button class="form-submit" onclick="handleSubmit()">Send Request</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</div><!-- end contact page -->
+
+<!-- FOOTER (shown on all pages via JS) -->
+<footer id="siteFooter">
+  <div class="footer-logo">Xeni<span>Mobile</span> Labs</div>
+  <ul class="footer-links">
+    <li><a onclick="showPage('home')">Home</a></li>
+    <li><a onclick="showPage('services')">Services</a></li>
+    <li><a onclick="showPage('about')">About</a></li>
+    <li><a onclick="showPage('contact')">Contact</a></li>
+  </ul>
+  <div class="footer-divider"></div>
+  <p>📞 913-762-2512 &nbsp;|&nbsp; Kansas City Metro Area</p>
+  <p style="margin-top:.5rem;">&copy; 2025 XeniMobile Labs. All rights reserved.</p>
+</footer>
+
+<div class="toast" id="toast">✓ Request sent! We'll be in touch shortly.</div>
+
+<script>
+function showPage(name) {
+  // Hide all pages
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  // Show target
+  document.getElementById('page-' + name).classList.add('active');
+  // Update nav active state
+  document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+  const navEl = document.getElementById('nav-' + name);
+  if (navEl) navEl.classList.add('active');
+  // Close mobile menu
+  document.getElementById('mainNav').classList.remove('open');
+  // Scroll to top
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function toggleMenu() {
+  document.getElementById('mainNav').classList.toggle('open');
+}
+
+function handleSubmit() {
+  const toast = document.getElementById('toast');
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 4000);
+}
+</script>
+</body>
+</html>
