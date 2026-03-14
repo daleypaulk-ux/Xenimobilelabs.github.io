@@ -129,6 +129,17 @@ section{padding:6rem 4%;}
   font-size:1.04rem;line-height:1.76;
   color:rgba(255,255,255,.65);max-width:480px;margin-bottom:2rem;
 }
+.hero-licensed-note{
+  display:inline-block;
+  margin:-.4rem 0 1.6rem;
+  padding:.55rem .95rem;
+  border-radius:10px;
+  background:rgba(232,160,32,.16);
+  border:1px solid rgba(232,160,32,.35);
+  color:var(--gold-light);
+  font-size:.83rem;
+  letter-spacing:.03em;
+}
 .hero-btns{display:flex;gap:.85rem;flex-wrap:wrap;margin-bottom:3rem;}
 .hero-stats{display:flex;gap:2.5rem;flex-wrap:wrap;}
 .stat-item .num{font-family:'Barlow Condensed',sans-serif;font-size:2.3rem;font-weight:900;color:var(--gold);line-height:1;}
@@ -166,6 +177,35 @@ section{padding:6rem 4%;}
   border-radius:9px;padding:.65rem;
   font-size:.7rem;font-weight:700;letter-spacing:.1em;
   color:var(--gold);text-transform:uppercase;
+}
+.hero-video-section{
+  background:var(--light);
+  padding:4.75rem 4% 5.5rem;
+}
+.hero-video-wrap{
+  max-width:980px;
+  margin:0 auto;
+  text-align:center;
+}
+.hero-video-wrap h3{
+  font-family:'Barlow Condensed',sans-serif;
+  font-size:clamp(1.8rem,4vw,2.7rem);
+  color:var(--navy);
+  line-height:1.1;
+  margin-bottom:.85rem;
+}
+.hero-video-wrap p{
+  color:var(--muted);
+  max-width:700px;
+  margin:0 auto 1.35rem;
+  line-height:1.7;
+}
+.hero-video{
+  width:100%;
+  border-radius:18px;
+  border:1px solid #dbe3f2;
+  box-shadow:0 18px 45px rgba(14,30,80,.14);
+  background:#000;
 }
 
 /* ═══════════════════════════════════════
@@ -225,6 +265,15 @@ section{padding:6rem 4%;}
    ABOUT
 ═══════════════════════════════════════ */
 .about-grid{display:grid;grid-template-columns:1fr 1.35fr;gap:5rem;align-items:center;margin-top:3.5rem;}
+.about-license-banner{
+  margin:1rem 0 1.35rem;
+  padding:1rem 1.2rem;
+  border-radius:12px;
+  border-left:4px solid var(--teal);
+  background:#eef9f7;
+  color:var(--navy);
+  font-weight:600;
+}
 .founder-card{
   background:linear-gradient(135deg,var(--navy),var(--navy2));
   border-radius:20px;padding:2.75rem;color:var(--white);
@@ -721,6 +770,7 @@ footer a{color:inherit;text-decoration:none;}
         <h1>Let Us Take<br>the <span class="t">Lab</span><br>to <span class="g">You</span></h1>
         <div class="hero-tagline">Speed <span>·</span> Accuracy <span>·</span> Safety</div>
         <p>XeniX Mobile Labs delivers on-site diagnostic and lab testing for businesses and healthcare providers, cutting costs, compliance risk, and downtime.</p>
+        <p class="hero-licensed-note"><strong>Every visit is handled by licensed, certified clinical professionals.</strong></p>
         <div class="hero-btns">
           <button class="btn-primary" onclick="showPage('contact')">Schedule a Visit</button>
           <button class="btn-outline" onclick="showPage('services')">Our Services</button>
@@ -752,6 +802,17 @@ footer a{color:inherit;text-decoration:none;}
           <div class="comp-badge">HIPAA · OSHA · CLIA Compliant</div>
         </div>
       </div>
+    </div>
+  </section>
+
+  <section class="hero-video-section">
+    <div class="hero-video-wrap">
+      <h3>See XeniX Mobile Labs in Action</h3>
+      <p>Watch our 1-minute commercial and learn how our licensed professionals bring trusted diagnostics directly to your door.</p>
+      <video class="hero-video" controls preload="metadata">
+        <source src="assets/videos/xenix-commercial-1min.mp4" type="video/mp4">
+        Your browser does not support the video tag.
+      </video>
     </div>
   </section>
 
@@ -858,7 +919,7 @@ footer a{color:inherit;text-decoration:none;}
     <div class="section-inner">
       <div class="section-label">Our Story</div>
       <h2 class="section-title">About XeniX Mobile Labs</h2>
-      <p class="section-sub">Born from a healthcare crisis, built on a mission — bringing diagnostics to the people who need them most.</p>
+      <p class="section-sub">Born from a healthcare crisis, built on a mission — bringing diagnostics to the people who need them most through licensed clinical professionals.</p>
       <div class="about-grid">
         <div class="founder-card">
           <div class="founder-avatar">
@@ -881,6 +942,7 @@ footer a{color:inherit;text-decoration:none;}
           </div>
         </div>
         <div class="about-story">
+          <div class="about-license-banner">Our staff are licensed healthcare professionals trained to deliver safe, accurate, and compliant mobile diagnostic care.</div>
           <p>XeniX Mobile Labs was founded by <strong>Sonsie Brown</strong>, a certified phlebotomist with multi-state and international clinical experience, during the height of the COVID-19 pandemic — when access to healthcare became a matter of life and death.</p>
           <p>Witnessing firsthand how transportation barriers, fear of infection, and collapsing rural healthcare infrastructure kept people from critical diagnostics, Sonsie built XeniX to be the solution: a fully mobile, fully compliant, community-first diagnostic service that meets patients exactly where they are.</p>
           <div class="mini-photo-card" style="max-width:300px;">
